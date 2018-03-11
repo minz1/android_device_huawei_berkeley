@@ -14,13 +14,18 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/huawei/berkeley/full_berkeley.mk)
-
-# Inherit from the common Open Source product configuration
+# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/treble_common.mk)
 
-PRODUCT_NAME := aosp_berkeley
+# Inherit some common AICP stuff.
+$(call inherit-product, vendor/aicp/config/common_full_phone.mk)
+
+# Inherit from berkeley device
+$(call inherit-product, device/huawei/berkeley/device.mk)
+
+PRODUCT_NAME := aicp_berkeley
 PRODUCT_DEVICE := berkeley
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := Honor View 10
